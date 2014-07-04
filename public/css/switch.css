@@ -1,0 +1,72 @@
+/* ---- Toggle Switches ---- */
+.switch {
+	position: relative;
+	margin: 20px auto;
+	height: 34px;
+	width: 100%;
+	max-width: 320px;
+	background: rgba(0, 0, 0, 0.6);
+		    border-radius: 3px;
+	   -moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+         box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(0, 0, 0, 0.1);
+	   -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0.3), 0 1px rgba(0, 0, 0, 0.1);
+	-webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(0, 0, 0, 0.1);
+}
+.switch-label {
+	position: relative;
+	z-index: 2;
+	float: left;
+	color: #fff;
+	width: 50%;
+	text-align: center;
+	cursor: pointer;
+	font: 12px/32px "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.switch-input {display: none;}
+.switch-input:checked + .switch-label {
+	font-weight: bold;
+	color: rgba(0, 0, 0, 0.65);
+	text-shadow: 0 1px rgba(255, 255, 255, 0.25);
+	        transition: 0.15s ease-out;
+	   -moz-transition: 0.15s ease-out;
+	-webkit-transition: 0.15s ease-out;
+}
+.switch-input:checked + .switch-label-on ~ .switch-selection {left: 50%;}
+.switch-selection {
+	display: block;
+	position: absolute;
+	z-index: 1;
+	top: 2px;
+	left: 2px;
+	width: 50%;
+	height: 30px;
+	background: #65bd63;
+	background-image: -webkit-linear-gradient(top, #9dd993, #65bd63);
+	background-image: -moz-linear-gradient(top, #9dd993, #65bd63);
+	background-image: -o-linear-gradient(top, #9dd993, #65bd63);
+	background-image: linear-gradient(to bottom, #9dd993, #65bd63);
+         border-radius: 3px;
+	   -moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+         transition: left 0.15s ease-out;
+	   -moz-transition: left 0.15s ease-out;
+	-webkit-transition: left 0.15s ease-out;
+	        box-shadow: inset 0 1px rgba(255, 255, 255, 0.5), 0 0 2px rgba(0, 0, 0, 0.2);
+	   -moz-box-shadow: inset 0 1px rgba(255, 255, 255, 0.5), 0 0 2px rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.5), 0 0 2px rgba(0, 0, 0, 0.2);
+}
+.switch-blue .switch-selection {
+	background: #3aa2d0;
+	background-image: -webkit-linear-gradient(top, #4fc9ee, #3aa2d0);
+	background-image: -moz-linear-gradient(top, #4fc9ee, #3aa2d0);
+	background-image: -o-linear-gradient(top, #4fc9ee, #3aa2d0);
+	background-image: linear-gradient(to bottom, #4fc9ee, #3aa2d0);
+}
+.switch-yellow .switch-selection {
+	background: #c4bb61;
+	background-image: -webkit-linear-gradient(top, #e0dd94, #c4bb61);
+	background-image: -moz-linear-gradient(top, #e0dd94, #c4bb61);
+	background-image: -o-linear-gradient(top, #e0dd94, #c4bb61);	
+	background-image: linear-gradient(to bottom, #e0dd94, #c4bb61);
+}                    
