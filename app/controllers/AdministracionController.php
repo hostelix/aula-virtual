@@ -336,23 +336,43 @@ class AdministracionController extends BaseController {
 
     public function post_subirarchivos(){
 
-		$extensiones_permitidas= array('png', 'jpg', 'gif','zip');
+		$extensiones_img= array('png', 'jpg', 'gif','jpeg');
+		$extensiones_doc= array('txt', 'docx', 'doc','xls','xlsx');
+		$extensiones_vid= array('mp4', 'flv', 'mov','avi','mpeg');
+		$extensiones_mus= array('mp3', 'ogg', 'wav');
 
 		if(isset($_FILES['upl']) && $_FILES['upl']['error'] == 0){
 
 			$extension = pathinfo($_FILES['upl']['name'], PATHINFO_EXTENSION);
 
-			if(!in_array(strtolower($extension), $extensiones_permitidas)){
-				echo '{"status":"error"}';
-				exit;
-			}
+			
 
-			if(move_uploaded_file($_FILES['upl']['tmp_name'], 'img_mesas/'.$_FILES['upl']['name'])){
-				echo '{"status":"success"}';
-				exit;
+			if(in_array(strtolower($extension), $extensiones_img)){
+				if(move_uploaded_file($_FILES['upl']['tmp_name'], 'archivos/imagenes/'.$_FILES['upl']['name'])){
+					echo '{"status":"success"}';
+					exit;
+				}
 			}
+			else if(in_array(strtolower($extension), $extensiones_doc)){
+				if(move_uploaded_file($_FILES['upl']['tmp_name'], 'archivos/documentos/'.$_FILES['upl']['name'])){
+					echo '{"status":"success"}';
+					exit;
+				}
+			}
+			else if(in_array(strtolower($extension), $extensiones_vic)){
+				if(move_uploaded_file($_FILES['upl']['tmp_name'], 'archivos/videos/'.$_FILES['upl']['name'])){
+					echo '{"status":"success"}';
+					exit;
+				}
+			}
+			else if(in_array(strtolower($extension), $extensiones_mus)){
+				if(move_uploaded_file($_FILES['upl']['tmp_name'], 'archivos/musicas/'.$_FILES['upl']['name'])){
+					echo '{"status":"success"}';
+					exit;
+				}
+			}
+			
 		}
-
 		echo '{"status":"error"}';
 		exit;
     }
