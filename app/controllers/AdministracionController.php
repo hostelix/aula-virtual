@@ -333,52 +333,28 @@ class AdministracionController extends BaseController {
     	return View::make('administracion.usuarios.subir_archivos');
     }
 
+
     public function post_subirarchivos(){
-    	$reglas = array(
-    		'imagen1' => 'required',
-    		'imagen2' => 'required',
-    		'imagen3' => 'required',
-    		'imagen4' => 'required',
-    		'imagen5' => 'required',
-    		'imagen6' => 'required'
-    		);
-		$campo = array(
-			'imagen1' => Input::file('imagen1'),
-			'imagen2' => Input::file('imagen2'),
-			'imagen3' => Input::file('imagen3'),
-			'imagen4' => Input::file('imagen4'),
-			'imagen5' => Input::file('imagen5'),
-			'imagen6' => Input::file('imagen6')
-			);
 
-		$validacion = Validator::make($campo, $reglas);
-		if($validacion->fails()){
-			return Redirect::back()->withErrors($validacion)->withInput();
-		}else{
-			$archivoA = Input::file('imagen1');
-			$archivoB = Input::file('imagen2');
-			$archivoC = Input::file('imagen3');
-			$archivoD = Input::file('imagen4');
-			$archivoE = Input::file('imagen5');
-			$archivoF = Input::file('imagen6');
+		$extensiones_permitidas= array('png', 'jpg', 'gif','zip');
 
-			$nombreA = $archivoA->getClientOriginalName();
-			$nombreB = $archivoB->getClientOriginalName();
-			$nombreC = $archivoC->getClientOriginalName();
-			$nombreD = $archivoD->getClientOriginalName();
-			$nombreE = $archivoE->getClientOriginalName();
-			$nombreF = $archivoF->getClientOriginalName();
+		if(isset($_FILES['upl']) && $_FILES['upl']['error'] == 0){
 
-			$archivoA->move('img_usuarios',$nombreA);
-			$archivoB->move('img_usuarios',$nombreB);
-			$archivoC->move('img_usuarios',$nombreC);
-			$archivoD->move('img_usuarios',$nombreD);
-			$archivoE->move('img_usuarios',$nombreE);
-			$archivoF->move('img_usuarios',$nombreF);
+			$extension = pathinfo($_FILES['upl']['name'], PATHINFO_EXTENSION);
 
-			return Redirect::to('/GestionUsuario/subirmesas');
+			if(!in_array(strtolower($extension), $extensiones_permitidas)){
+				echo '{"status":"error"}';
+				exit;
+			}
 
+			if(move_uploaded_file($_FILES['upl']['tmp_name'], 'img_mesas/'.$_FILES['upl']['name'])){
+				echo '{"status":"success"}';
+				exit;
+			}
 		}
+
+		echo '{"status":"error"}';
+		exit;
     }
 
 }

@@ -4,7 +4,6 @@
 	<meta charset="utf-8">
 	<title>Veninversion - Panel </title>
 	{{HTML::style('/css/all.css', array('rel'=>"stylesheet"))}}
-	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<script type="text/javascript">window.jQuery || document.write('<script type="text/javascript" src="js/jquery-1.7.2.min.js"><\/script>');</script>
 	<script type="text/javascript" src="js/jquery.main.js"></script>
 	<!--[if lt IE 9]><link rel="stylesheet" type="text/css" href="css/ie.css" /><![endif]-->
@@ -13,10 +12,15 @@
     {{HTML::style('/css/bootstrap.css', array('rel'=>"stylesheet"))}}
     {{HTML::style('/css/font-awesome.min.css', array('rel'=>"stylesheet"))}}
     {{HTML::style('/css/bootstrap-responsive.css', array('rel'=>"stylesheet"))}}
-    {{HTML::script('/js/jquery.min.js')}}
+    <script src="/assets/js/jquery-1.11.1.min.js"></script>
     <link rel="shortcut icon" href="{{asset('/img/favicon.png')}}">
 
-    <!--SCRIPT-->
+    <!-- Google web fonts -->
+	<link href="http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700" rel='stylesheet' />
+
+	<!-- The main CSS file -->
+	<link href="/assets/css/style.css" rel="stylesheet" />
+
 </head>
 <body>
 	<div id="wrapper">
@@ -50,27 +54,21 @@
 							<div class="text-section">
 							</div>
 							<h2>&nbsp;&nbsp;&nbsp;Subir archivos</h2>
-							<hr>
-							@if($errors->has())
-								<ul class="states">
-           							@foreach ($errors->all() as $error)
-                							<li class="succes">{{$error}}</li>
-           	 						@endforeach
-          					@endif
-							</ul>
-							<hr>
-							<form class="form-search" style="margin-left:40px" method="post" enctype="multipart/form-data">
-  								<input type="file" class="input-large " name="imagen1"><br>
-  								<input type="file" class="input-large " name="imagen2"><br>
-  								<input type="file" class="input-large " name="imagen3"><br>
-  								<input type="file" class="input-large " name="imagen4"><br>
-  								<input type="file" class="input-large " name="imagen5"><br>
-  								<input type="file" class="input-large " name="imagen6"><br><br>
-  								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  								<button type="submit" class="btn">Subir</button>
-							</form>
-							<div>
 							
+							<div id="html">						
+								<form id="upload" method="post" action="/Administracion/subirarchivos" enctype="multipart/form-data">
+									<div id="drop">
+										Coloque aqui
+
+										<a>Agregar</a>
+										<input type="file" name="upl" multiple />
+									</div>
+
+									<ul>
+										<!-- The file uploads will be shown here -->
+									</ul>
+
+								</form>
 						    </div>
 						</article>
 					</div>
@@ -116,6 +114,19 @@
 			<span class="shadow"></span>
 		</aside>
 	</div>
+
+	<!-- JavaScript Includes -->
+		
+		
+		{{ HTML::script("/assets/js/jquery.knob.js") }}
+		<!-- jQuery File Upload Dependencies -->
+		{{ HTML::script("/assets/js/jquery.ui.widget.js") }}
+		{{ HTML::script("/assets/js/jquery.iframe-transport.js") }}
+		{{ HTML::script("/assets/js/jquery.fileupload.js") }}
+		
+		<!-- Our main JS file -->
+		{{ HTML::script("/assets/js/script.js") }}
+
 </body>
 </html>
 @else
