@@ -24,7 +24,7 @@ class UsuarioController extends BaseController{
 	public function post_subirimagen(){
 		$reglas = array('imagen_usuario' => 'required');
 		$campo = array('imagen_usuario' => Input::file('imagen_usuario'));
-
+		
 		$validacion = Validator::make($campo, $reglas);
 		if($validacion->fails()){
 			return Redirect::back()->withErrors($validacion)->withInput();

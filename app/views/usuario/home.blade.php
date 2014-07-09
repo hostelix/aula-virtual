@@ -34,6 +34,9 @@
           padding-right: 5px;
         }
       }
+      #notificacion{
+        text-decoration: none;
+      }
     </style>
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -58,12 +61,21 @@
           </button>
           <a class="brand" href="#">Veninversion</a>
           <div class="nav-collapse collapse">
-          @if(Auth::check())
+          @if(false)
+            @if(Auth::check())
+              <p class="navbar-text pull-right">
+                Haz iniciado sesion correctamente 
+                <span class="label label-success">{{Ucwords(Auth::user()->usuario)}}</span> <i class="fa fa-check-square-o fa-fw"></i>
+              </p>
+              @endif
+          @else
             <p class="navbar-text pull-right">
-              Haz iniciado sesion correctamente 
-<span class="label label-success">{{Ucwords(Auth::user()->usuario)}}</span> <i class="fa fa-check-square-o fa-fw"></i>
+                Tienes nuevas notificaciones 
+                <button type="button" class="btn btn-success" id="notificacion">Success</button>
+                <span class="badge">42</span> <i class="fa fa-level-down fa-fw fa-lg"></i>
+                
             </p>
-            @endif
+          @endif
             <ul class="nav">
               <li class="active"><a href="/home">Inicio</a></li>
               <li><a href="/GestionUsuario/perfil">Perfil</a></li>
@@ -89,6 +101,9 @@
                 <li><a href="/Administracion/panelprincipal">Panel de administrador&nbsp;&nbsp;<i class="fa fa-sign-out
               "></i></a></li>
               @endif
+              <li class="nav-header">Contenidos</li>
+              <li><a href="/GestionUsuario/registro">Archivos cargados&nbsp;&nbsp;
+              <span class="badge pull-right">42</span><i class="fa fa-angle-double-right"></i></a></li>
               <li class="nav-header">Salir</li>
               <li><a href="/Autenticacion/logout">Cerrar Sesion&nbsp;&nbsp;<i class="fa fa-sign-out"></i></a></li>
             </ul>
@@ -159,6 +174,18 @@
       </footer>
 
     </div><!--/.fluid-container-->
+
+
+    <!--popover Notificaciones-->
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $('#notificacion').popover({container:'',placement:'auto buttom',trigger:'click',title:'ejemplo',content:'hola mundo'});
+    })    
+
+    </script>
+
+
 
     <!-- Le javascript
     ================================================== -->

@@ -113,13 +113,13 @@
         <div class="span9">
           <div class="tabbable"> <!-- Only required for left/right tabs -->
             <ul class="nav nav-tabs">
-              <li class="active"><a href="#tab1" data-toggle="tab">Datos Usuario </a></li>
-              <li><a href="#tab2" data-toggle="tab">Subir Imagen</a></li>
+              <li {{($errors->has())?"":'class="active"'}}><a href="#tab1" data-toggle="tab">Datos Usuario </a></li>
+              <li {{($errors->has())?'class="active"':""}}><a href="#tab2" data-toggle="tab">Subir Imagen</a></li>
             </ul>
 
             <div class="tab-content">
 
-              <div class="tab-pane active" id="tab1">
+              <div class="tab-pane {{($errors->has())?"":'active'}}" id="tab1">
                 <div class="well">
                   <div class="row-fluid">
                     <div class="span6">
@@ -223,7 +223,7 @@
                 </div>
               </div>
               
-              <div class="tab-pane" id="tab2">
+              <div class="tab-pane {{($errors->has())?'active':""}}" id="tab2">
                 <div class="well">
                   {{Form::open(array('url'=>'GestionUsuario/subirimagen','files'=>true))}}
                   <legend>Selecciona una imagen para identificarte</legend>
